@@ -2,13 +2,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const OrderSchema = new Schema({
-    orderId: String,
-    customerId: String,
-    amount: Number,
-    status: String,
-    txnId: String,
-    items: [
+const CartSchema = new Schema({
+    customerId:{type:String},
+    items:[
         {
             product:{
                 _id:{type:String , require: true},
@@ -22,6 +18,7 @@ const OrderSchema = new Schema({
             unit:{type:Number, require:true}
         }
     ]
+    
 },
 {
     toJSON: {
@@ -32,4 +29,4 @@ const OrderSchema = new Schema({
     timestamps: true
 });
 
-module.exports =  mongoose.model('order', OrderSchema);
+module.exports =  mongoose.model('cart', CartSchema);

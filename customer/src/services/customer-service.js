@@ -79,6 +79,7 @@ class CustomerService {
     }
 
     async AddToWishlist(customerId, product){
+        console.log("ayoooo")
          const wishlistResult = await this.repository.AddWishlistItem(customerId, product);        
         return FormateData(wishlistResult);
     }
@@ -95,13 +96,17 @@ class CustomerService {
 
 
     async SubscribeEvents(payload){
+        
+
  
-        const { event, data } =  payload;
+        const { event, data } =  payload.data;
 
         const { userId, product, order, qty } = data;
 
         switch(event){
             case 'ADD_TO_WISHLIST':
+                this.AddToWishlist(userId,product)
+                break;
             case 'REMOVE_FROM_WISHLIST':
                 this.AddToWishlist(userId,product)
                 break;
